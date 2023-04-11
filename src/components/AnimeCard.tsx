@@ -1,5 +1,10 @@
 import styled from "styled-components";
 import { Anime } from "../types";
+import { Link } from "wouter";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 const Container = styled.div`
   width: 80%;
   min-width: 300px;
@@ -39,11 +44,12 @@ interface AnimeCardProps {
 }
 function AnimeCard({ anime }: AnimeCardProps) {
   return (
-    <Container>
-      <Image src={anime.image} alt={anime.title} />
-      <Title>{anime.title}</Title>
-      {/* <p>{anime.synopsis}</p> */}
-    </Container>
+    <StyledLink to={`/anime/${anime.id}`}>
+      <Container>
+        <Image src={anime.image} alt={anime.title} />
+        <Title>{anime.title}</Title>
+      </Container>
+    </StyledLink>
   );
 }
 

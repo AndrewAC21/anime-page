@@ -1,11 +1,11 @@
-import AnimeList from "./components/AnimeList";
-
-
-
+import { Route } from "wouter";
+import Home from "./pages/Home";
+import SpecificAnime from "./pages/SpecificAnime";
 function App() {
   return (
     <>
-      <AnimeList />;
+      <Route path="/" component={Home}></Route>
+      <Route path="/anime/:id" component={SpecificAnime}></Route>
     </>
   );
 }
