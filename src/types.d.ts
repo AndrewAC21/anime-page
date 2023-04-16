@@ -2,6 +2,7 @@ export interface Anime {
   id: number;
   title: string;
   image: string;
+  description?: string;
 }
 
 export interface AnimeContextType {
@@ -10,7 +11,4 @@ export interface AnimeContextType {
   filteredAnimes: Anime[];
   handleSearch: (keyword: string) => void;
   setAnimes: (animeList: Anime[]) => void;
-}
-export interface Animex {
-  state: AnimeState;
 }

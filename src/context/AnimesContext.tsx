@@ -15,6 +15,7 @@ const AnimesContextProvider = ({ children }: AnimeContextProps) => {
 
   let handleSearch = (keyword: string) => {
     setSearchKeyword(keyword.toLowerCase());
+    //TODO - Create conditional to check if search has coincidences with an anime - ma
   };
 
   return (

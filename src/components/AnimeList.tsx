@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Anime, AnimeContextType } from "../types";
 import AnimeCard from "./AnimeCard";
-import { getLatestAnimes } from "../services/getLatestAnimes";
+import { getLatestAnimes } from "../services/getAnimes";
 import { AnimesContext } from "../context/AnimesContext";
 
 const Container = styled.div`
