@@ -21,5 +21,6 @@ export async function getLatestAnimes() {
 export async function getAnimeById(id: number | string) {
   let response = await axios.get(`${BASE_URL}/anime/${id}`);
   let { data } = await response.data;
+  console.log(data)
   return data
 }

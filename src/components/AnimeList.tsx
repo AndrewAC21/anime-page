@@ -20,14 +20,7 @@ export default function AnimeList() {
   let { setAnimes, filteredAnimes } = useContext(
     AnimesContext
   ) as AnimeContextType;
-  useEffect(() => {
-    async function fetchData() {
-      let animesArray = await getLatestAnimes();
-      setAnimes([...animesArray]);
-    }
-    fetchData();
-  }, []);
-  return (
+    return (
     <Container>
       {filteredAnimes.map((anime: Anime) => (
         <AnimeCard anime={anime} key={anime.id} />

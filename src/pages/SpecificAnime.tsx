@@ -5,7 +5,11 @@ type Props = {
 };
 
 function SpecificAnime({ params }: Props) {
-  return <div>{params.id}</div>;
+  return (
+    <>
+      <h1>{"hola"}</h1>
+    </>
+  );
 }
 
 export default SpecificAnime;

@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import useAnime from "../hooks/useAnime";
 import { Anime, AnimeContextType } from "../types";
 
 type AnimeContextProps = {
@@ -7,20 +8,19 @@ type AnimeContextProps = {
 const AnimesContext = createContext<AnimeContextType | null>(null);
 
 const AnimesContextProvider = ({ children }: AnimeContextProps) => {
-  let [animes, setAnimes] = useState<Anime[]>([]);
+  let { animes } = useAnime();
   let [searchKeyword, setSearchKeyword] = useState("");
-  let filteredAnimes = animes.filter((anime) =>
+  let filteredAnimes = animes.filter((anime: Anime) =>
     anime.title.toLowerCase().includes(searchKeyword)
   );
 
   let handleSearch = (keyword: string) => {
     setSearchKeyword(keyword.toLowerCase());
-    //TODO - Create conditional to check if search has coincidences with an anime - ma
   };
 
   return (
     <AnimesContext.Provider
-      value={{ handleSearch, searchKeyword, setAnimes, animes, filteredAnimes }}
+      value={{ handleSearch, searchKeyword, filteredAnimes }}
     >
       {children}
     </AnimesContext.Provider>

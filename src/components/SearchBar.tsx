@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useLocation } from "wouter";
 import { AnimesContext } from "../context/AnimesContext";
 import { AnimeContextType } from "../types";
+import { Paths } from "../pages/paths";
 
 const StyledForm = styled.form`
   display: flex;
@@ -37,9 +38,9 @@ function SearchBar() {
       alert("Make sure you enter a valid ID"); //TODO - Create a modal to show this message
 
       handleSearch("");
-      setLocation("/");
+      setLocation(Paths.HOME);
     } else {
-      setLocation(`/anime/${animeId}`);
+      setLocation(`${Paths.ANIME}/${animeId}`);
     }
   };
   return (
