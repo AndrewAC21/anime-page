@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import styled from "styled-components";
-import { Anime } from "../types";
+import { Anime, AnimeContextType } from "../types";
 import AnimeCard from "./AnimeCard";
 import { getLatestAnimes } from "../services/getLatestAnimes";
+import { AnimesContext } from "../context/AnimesContext";
 
 const Container = styled.div`
   width: 100%;
@@ -15,7 +16,9 @@ const Container = styled.div`
   gap: 2rem;
 `;
 export default function AnimeList() {
-  let [animes, setAnimes] = useState<Array<Anime>>([]);
+  let { setAnimes, filteredAnimes } = useContext(
+    AnimesContext
+  ) as AnimeContextType;
   useEffect(() => {
     async function fetchData() {
       let animesArray = await getLatestAnimes();
@@ -25,9 +28,9 @@ export default function AnimeList() {
   }, []);
   return (
     <Container>
-      {animes.map((anime: Anime) => {
-        return <AnimeCard anime={anime} key={anime.id} />;
-      })}
+      {filteredAnimes.map((anime: Anime) => (
+        <AnimeCard anime={anime} key={anime.id} />
+      ))}
     </Container>
   );
 }
