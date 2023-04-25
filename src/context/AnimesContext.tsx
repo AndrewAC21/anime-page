@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import useAnime from "../hooks/useAnime";
 import { Anime, AnimeContextType } from "../types";
+import useFilterAnimes from "../hooks/useFilterAnime";
 
 type AnimeContextProps = {
   children: JSX.Element | JSX.Element[];
@@ -8,19 +9,16 @@ type AnimeContextProps = {
 const AnimesContext = createContext<AnimeContextType | null>(null);
 
 const AnimesContextProvider = ({ children }: AnimeContextProps) => {
+  const [keyword, setKeyword] = useState<string>("");
   let { animes } = useAnime();
-  let [searchKeyword, setSearchKeyword] = useState("");
-  let filteredAnimes = animes.filter((anime: Anime) =>
-    anime.title.toLowerCase().includes(searchKeyword)
-  );
+  let { filteredAnimes } = useFilterAnimes({ keyword, array: animes });
 
-  let handleSearch = (keyword: string) => {
-    setSearchKeyword(keyword.toLowerCase());
+  let handleSearch = (e: string) => {
+    setKeyword(e);
   };
-
   return (
     <AnimesContext.Provider
-      value={{ handleSearch, searchKeyword, filteredAnimes }}
+      value={{ globalAnimes: filteredAnimes, handleSearch }}
     >
       {children}
     </AnimesContext.Provider>

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { useLocation } from "wouter";
 import { AnimesContext } from "../context/AnimesContext";
@@ -22,18 +22,18 @@ const StyledForm = styled.form`
   }
 `;
 function SearchBar() {
-  let { handleSearch, searchKeyword } = useContext(
-    AnimesContext
-  ) as AnimeContextType;
+  let keywordRef = useRef("");
+  let { handleSearch } = useContext(AnimesContext) as AnimeContextType;
   let [location, setLocation] = useLocation();
 
   let handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleSearch(e.target.value);
+    keywordRef.current = e.target.value;
   };
 
   let handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let animeId = Number(searchKeyword);
+    let animeId = 0;
     if (!animeId) {
       alert("Make sure you enter a valid ID"); //TODO - Create a modal to show this message
 
@@ -50,7 +50,7 @@ function SearchBar() {
           type="text"
           onChange={handleSearchInput}
           placeholder="Search for an anime"
-          value={searchKeyword}
+          value={keywordRef.current}
         />
       </StyledForm>
     </>

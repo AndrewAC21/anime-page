@@ -1,8 +1,7 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { Anime, AnimeContextType } from "../types";
 import AnimeCard from "./AnimeCard";
-import { getLatestAnimes } from "../services/getAnimes";
 import { AnimesContext } from "../context/AnimesContext";
 import NotFound from "./NotFound";
 
@@ -17,15 +16,14 @@ const Container = styled.div`
   gap: 2rem;
 `;
 export default function AnimeList() {
-  let { setAnimes, filteredAnimes } = useContext(
-    AnimesContext
-  ) as AnimeContextType;
-    return (
+  let { globalAnimes } = useContext(AnimesContext) as AnimeContextType;
+  console.log(globalAnimes, "list");
+  return (
     <Container>
-      {filteredAnimes.map((anime: Anime) => (
+      {globalAnimes.map((anime: Anime) => (
         <AnimeCard anime={anime} key={anime.id} />
       ))}
-      {filteredAnimes.length === 0 && <NotFound />}
+      {globalAnimes.length === 0 && <NotFound />}
     </Container>
   );
 }

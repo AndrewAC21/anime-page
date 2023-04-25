@@ -3,11 +3,12 @@ import { getAnimeById, getLatestAnimes } from "../services/getAnimes";
 import { Anime } from "../types";
 
 interface Props {
-  animeId?: number;
+  animeId?: string;
 }
 
 export default function useAnime({ animeId }: Props = {}) {
   const [animes, setAnimes] = useState<Anime[]>([]);
+  // const [specificAnime, setSpecificAnime] = useState<Anime>();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
@@ -17,6 +18,16 @@ export default function useAnime({ animeId }: Props = {}) {
     }
     fetchData();
   }, []);
+  // useEffect(() => {
+  //   async function fetchSpecificAnime() {
+  //     if (!animeId) return;
 
-  return { loading, animes };
+  //     let animeInfo = await getAnimeById(animeId);
+  //     setSpecificAnime(animeInfo);
+  //   }
+  //   fetchSpecificAnime();
+  // }, [animeId]);
+  return { loading, animes  };
 }
+
+

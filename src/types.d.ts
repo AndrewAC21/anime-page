@@ -6,7 +6,6 @@ export interface Anime {
 }
 
 export interface AnimeContextType {
-  searchKeyword: string;
-  filteredAnimes: Anime[];
+  globalAnimes: Anime[];
   handleSearch: (keyword: string) => void;
 }
