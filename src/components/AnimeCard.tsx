@@ -1,13 +1,21 @@
 import styled from "styled-components";
 import { Anime } from "../types";
 import { Link } from "wouter";
+import { ImageListItem, ImageListItemBar, IconButton } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 
+const Container = styled(Grid)`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+`;
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
-const Container = styled.div`
+const ImageListItemStyled = styled(ImageListItem)`
   width: 80%;
-  min-width: 300px;
+  min-width: 270px;
   max-width: 00px;
   min-height: 30rem;
   display: flex;
@@ -33,11 +41,10 @@ const Image = styled.img`
   border-radius: 10px 10px 0 0;
 `;
 
-const Title = styled.h3`
-  width: 90%;
+const ImageListItemBarTitle = styled(ImageListItemBar)`
+  width: 100%;
   font-size: 2.5rem;
   font-weight: bold;
-  margin: 1rem auto;
   text-align: center;
 `;
 interface AnimeCardProps {
@@ -45,12 +52,29 @@ interface AnimeCardProps {
 }
 function AnimeCard({ anime }: AnimeCardProps) {
   return (
-    <StyledLink to={`/anime/${anime.id}`}>
-      <Container>
-        <Image src={anime.image} alt={anime.title} />
-        <Title>{anime.title}</Title>
-      </Container>
-    </StyledLink>
+    <Container xs={12} sm={6} md={4}>
+      <StyledLink to={`/anime/${anime.id}`}>
+        <ImageListItemStyled key={anime.id}>
+          <Image
+            src={`${anime.image}?w=248&fit=crop&auto=format`}
+            srcSet={`${anime.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            alt={anime.title}
+            loading="lazy"
+          />
+          <ImageListItemBarTitle
+            title={anime.title}
+            actionIcon={
+              <IconButton
+                sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                aria-label={`Add to favorites ${anime.title}`}
+              >
+                <StarBorderIcon />
+              </IconButton>
+            }
+          />
+        </ImageListItemStyled>
+      </StyledLink>
+    </Container>
   );
 }
 
