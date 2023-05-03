@@ -23,6 +23,7 @@ const Container = styled.div`
     border-left: 10px;
     border-top: 10px;
     margin: 2rem 0;
+    cursor: pointer;
   }
 `;
 const Image = styled.img`

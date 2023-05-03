@@ -15,6 +15,5 @@ export default function useFilterAnimes({ keyword, array }: Props) {
     );
     if (filteredData.length > 0) setFilteredAnimes(filteredData);
   }, [keyword, array]);
-  console.log(filteredAnimes, "hook");
   return { filteredAnimes };
 }

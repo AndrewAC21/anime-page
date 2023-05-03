@@ -17,7 +17,6 @@ const Container = styled.div`
 `;
 export default function AnimeList() {
   let { globalAnimes } = useContext(AnimesContext) as AnimeContextType;
-  console.log(globalAnimes, "list");
   return (
     <Container>
       {globalAnimes.map((anime: Anime) => (
