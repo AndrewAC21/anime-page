@@ -9,16 +9,21 @@ const StyledForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem;
+  margin: auto;
+  width: 80%;
+  min-width: 300px;
+  max-width: 500px;
   input {
-    width: 80%;
-    min-width: 300px;
-    max-width: 500px;
+    width: 100%;
     padding: 1rem;
+    padding-left: 2rem;
     border: 1px solid #ccc;
     border-radius: 20px;
     outline: none;
     font-size: 2rem;
+    ::placeholder {
+      text-align: center;
+    }
   }
 `;
 function SearchBar() {
@@ -49,7 +54,7 @@ function SearchBar() {
         <input
           type="text"
           onChange={handleSearchInput}
-          placeholder="Search for an anime"
+          placeholder="Search for an anime..."
           value={keywordRef.current}
         />
       </StyledForm>

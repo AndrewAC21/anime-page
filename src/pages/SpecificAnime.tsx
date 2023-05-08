@@ -34,14 +34,15 @@ const Description = styled.p`
 `;
 interface Props {
   params: {
-    id: number;
+    id?: string | number | undefined;
   };
 }
 
 function SpecificAnime({ params }: Props) {
   const { globalAnimes } = useContext(AnimesContext) as AnimeContextType;
+  console.log(params?.id);
   let selectedAnime: Anime | undefined = globalAnimes.find(
-    (singleAnime) => singleAnime.id == params.id
+    (singleAnime) => singleAnime.id == params?.id
   );
   return (
     <ContainerAnime>
