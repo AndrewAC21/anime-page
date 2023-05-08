@@ -2,7 +2,7 @@ import { Route } from "wouter";
 import { AnimesContextProvider } from "./context/AnimesContext";
 import Home from "./pages/Home";
 import SpecificAnime from "./pages/SpecificAnime";
-import SearchBar from "./components/SearchBar";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
           {(params) => <SpecificAnime params={params} />}
         </Route>
       </AnimesContextProvider>
+      <Footer />
     </>
   );
 }
